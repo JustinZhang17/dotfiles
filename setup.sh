@@ -79,5 +79,11 @@ sudo snap install typst
 display "Install Zathura"
 sudo apt install -y zathura
 
+display "Install c++ complier"
+sudo apt install -y c++
+
+display "Install xClip (Clipboard)"
+sudo apt install -y xclip
+
 display "Clean unused packages"
 sudo apt -y autoremove
