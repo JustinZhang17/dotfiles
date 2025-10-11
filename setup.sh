@@ -80,7 +80,7 @@ display "Install Zathura"
 sudo apt install -y zathura
 
 display "Install c++ complier"
-sudo apt install -y c++
+sudo apt install -y g++
 
 display "Install xClip (Clipboard)"
 sudo apt install -y xclip
