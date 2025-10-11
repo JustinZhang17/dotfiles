@@ -1,0 +1,10 @@
+# RC config
+
+# Safety
+alias rm='safe-rm'
+
+# Prettier
+alias cat="batcat"
+
+# Git
+alias gitview="git tree"

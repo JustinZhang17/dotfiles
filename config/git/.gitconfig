@@ -1,0 +1,30 @@
+[user]
+  name = Justin Zhang
+  email = hi@justinjzhang.com
+
+[core]
+  editor = nvim
+  autocrlf = input # Convert CRLF to LF on commits
+  pager = delta
+  whitespace = trailing-space,space-before-tab # Highlight whitespace issues
+  preloadIndex = true # Speed up git commands by caching index
+
+[color]
+    ui = auto    
+
+[ui]
+    color = auto
+
+[alias]
+  tree = log --graph --all --decorate --oneline
+  pom = push origin main
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  dark = true
+
+[merge]
+  conflictStyle = zdiff3

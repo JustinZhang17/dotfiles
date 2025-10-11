@@ -1,2 +1,2 @@
 # dotfiles
-A collection of configuration files and ansible playbooks
+A collection of configuration files and scripts 
