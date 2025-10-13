@@ -21,6 +21,11 @@ display() {
 display "Update Package List"
 sudo apt update
 
+display "Install Guest Agent"
+sudo apt install qemu-guest-agent
+sudo systemctl enable qemu-guest-agent
+sudo systemctl start qemu-guest-agent
+
 display "Install uv"
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -84,6 +89,9 @@ sudo apt install -y g++
 
 display "Install xClip (Clipboard)"
 sudo apt install -y xclip
+
+display "Install Starship"
+curl -sS https://starship.rs/install.sh | sh
 
 display "Clean unused packages"
 sudo apt -y autoremove
