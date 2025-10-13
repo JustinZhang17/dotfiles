@@ -21,6 +21,9 @@ display() {
 display "Update Package List"
 sudo apt update
 
+display "Install Curl"
+sudo apt install -y curl
+
 display "Install Guest Agent"
 sudo apt install qemu-guest-agent
 sudo systemctl enable qemu-guest-agent
@@ -93,5 +96,18 @@ sudo apt install -y xclip
 display "Install Starship"
 curl -sS https://starship.rs/install.sh | sh
 
+display "Configuring Starship"
+cp -r ./config/starship/starship.toml $HOME/.config/
+
+display "Generate SSH Key"
+if [ -f $HOME/.ssh/id_ed25519.pub ]; then
+  echo "SSH key already exists. Skipping key generation."
+else
+  ssh-keygen -t ed25519 -C "hi@justinjzhang.com"
+fi
+
 display "Clean unused packages"
 sudo apt -y autoremove
+
+display "Reload Shell Config"
+source $SHELL_CONFIG
