@@ -9,3 +9,6 @@ alias cat="batcat"
 
 # Git
 alias gitview="git tree"
+
+# Starship
+eval "$(starship init $(basename $SHELL))"
