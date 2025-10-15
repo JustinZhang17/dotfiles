@@ -93,6 +93,9 @@ sudo apt install -y g++
 display "Install xClip (Clipboard)"
 sudo apt install -y xclip
 
+display "Install Rust/Cargo"
+curl https://sh.rustup.rs -sSf | sh
+
 display "Install Starship"
 curl -sS https://starship.rs/install.sh | sh
 
