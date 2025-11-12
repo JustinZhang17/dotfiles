@@ -109,6 +109,9 @@ else
   ssh-keygen -t ed25519 -C "hi@justinjzhang.com"
 fi
 
+display "Set EST Timezone"
+sudo timedatectl set-timezone EST
+
 display "Clean unused packages"
 sudo apt -y autoremove
 
