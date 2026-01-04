@@ -2,7 +2,7 @@
 
 # Safety
 alias rm='safe-rm'
-alias purge='rm'
+alias purge='/bin/rm'
 
 # Prettier
 alias cat="batcat"
