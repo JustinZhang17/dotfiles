@@ -6,6 +6,9 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+-- Jump List
+map("n", "gb", "<C-o>", { desc = "Go back in jump list" })
+
 -- Window split mappings
 map("n", "<leader>sh", ":split<CR>", opts)
 map("n", "<leader>sv", ":vsplit<CR>", opts)
