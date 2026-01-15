@@ -4,6 +4,9 @@
 alias rm='safe-rm'
 alias purge='/bin/rm'
 
+# Cheat Sheets
+alias lcc='printf "\e[32m%-10s\e[0m | %s\n\e[31m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[33m%-10s\e[0m | %s\n\e[35m%-10s\e[0m | %s\n\e[36m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[90m%-10s\e[0m | %s\n\e[31m%-10s\e[0m | %s\n\n\e[1m%s\e[0m\n\e[1;31m%s\e[0m\n" "feat" "A new feature" "fix" "A bug fix" "docs" "Documentation changes" "style" "Formatting, missing semi colons, etc." "refactor" "Code change that neither fixes nor adds" "perf" "Performance improvements" "test" "Adding/correcting tests" "build" "Build system or external dependencies" "ci" "CI configuration files and scripts" "chore" "General maintenance/tooling" "revert" "Reverts a previous commit" "Format: <type>(<scope>): <description> (e.g., feat(api): add user login)." "Breaking Changes: Add ! after type/scope or BREAKING CHANGE: in footer."'
+
 # Prettier
 alias cat="batcat"
 
