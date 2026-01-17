@@ -76,6 +76,9 @@ source $SHELL_CONFIG
 display "Install safe-rm"
 npm i -g safe-rm
 
+display "Install pnpm"
+npm i -g pnpm
+
 display "Install gvm"
 sudo apt install -y bison
 curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
