@@ -4,8 +4,21 @@
 alias rm='safe-rm'
 alias purge='/bin/rm'
 
-# Cheat Sheets
+# Cheat Sheet (Conventional Commits)
 alias lcc='printf "\e[32m%-10s\e[0m | %s\n\e[31m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[33m%-10s\e[0m | %s\n\e[35m%-10s\e[0m | %s\n\e[36m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[34m%-10s\e[0m | %s\n\e[90m%-10s\e[0m | %s\n\e[31m%-10s\e[0m | %s\n\n\e[1m%s\e[0m\n\e[1;31m%s\e[0m\n" "feat" "A new feature" "fix" "A bug fix" "docs" "Documentation changes" "style" "Formatting, missing semi colons, etc." "refactor" "Code change that neither fixes nor adds" "perf" "Performance improvements" "test" "Adding/correcting tests" "build" "Build system or external dependencies" "ci" "CI configuration files and scripts" "chore" "General maintenance/tooling" "revert" "Reverts a previous commit" "Format: <type>(<scope>): <description> (e.g., feat(api): add user login)." "Breaking Changes: Add ! after type/scope or BREAKING CHANGE: in footer."'
+
+# Cheat Sheet (Conventional Comments)
+alias lcr='printf "\e[31m%-11s\e[0m | %s\n\e[35m%-11s\e[0m | %s\n\e[36m%-11s\e[0m | %s\n\e[32m%-11s\e[0m | %s\n\e[37m%-11s\e[0m | %s\n\n\e[1;33m%s\e[0m\n\e[34m%-3s\e[0m %s\n\e[34m%-3s\e[0m %s\n\e[34m%-3s\e[0m %s\n\e[34m%-3s\e[0m %s\n\e[34m%-3s\e[0m %s\n" \
+"[Blocking]" "Critical issues/Bugs. Must be fixed before merge." \
+"[Non-block]" "Improvements. Expected fix, but flexible scope." \
+"[Nitpick]" "Minor style/pref. Optional for the author." \
+"[Question]" "Seeking clarification or intent behind a choice." \
+"[Praise]" "Positive feedback on elegant or clever solutions." \
+"BEST PRACTICES:" \
+"•" "Review the \"Why\" (logic), not just the \"What\" (syntax)." \
+"•" "Use \"I\" or \"We\" statements and questions (e.g., \"I noticed ..., We should probably add a ... here\")." \
+"•" "If a thread goes 3+ back-and-forths, stop typing, move to a sync call or in-person." \
+"•" "Praise liberally! Build a culture of positive growth."'
 
 # Prettier
 alias cat="batcat"
