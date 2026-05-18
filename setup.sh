@@ -112,6 +112,15 @@ else
   ssh-keygen -t ed25519 -C "hi@justinjzhang.com"
 fi
 
+display "Install Tailscale"
+curl -fsSL https://tailscale.com/install.sh | sh
+
+display "Install Github CLI"
+sudo snap install gh --classic
+
+display "Login + Add SSH pub key to Github"
+gh auth login
+
 display "Set EST Timezone"
 sudo timedatectl set-timezone EST
 
