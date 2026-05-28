@@ -24,3 +24,12 @@ map('n', '<leader>dse', dap.step_out, { desc = 'Debug: Step Out' })
 
 map('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
 map('n', '<leader>du', dapui.toggle, { desc = 'Debug: Open Debugging UI' })
+
+-- CodeCompanion Mappings
+map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "AI Chat Toggle" })
+
+map({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "AI Actions" })
+
+map("v", "<leader>ce", "<cmd>CodeCompanion<cr>", { desc = "AI Inline Edit" })
+
+map("v", "<leader>cx", "<cmd>CodeCompanionChat Add<cr>", { desc = "AI Chat Add Selection" })

@@ -5,7 +5,6 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,16 +12,41 @@ return {
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  -- AI Code Companion
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/nvim-cmp", 
+      "nvim-telescope/telescope.nvim", 
+    },
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "githubmodels", 
+            roles = {
+              llm = "CodeCompanion",
+              user = "Justin",
+            },          
+          },
+          inline = {
+            adapter = "githubmodels",
+          },
+        },
+        display = {
+          action_palette = {
+            provider = "telescope", 
+          },
+        },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+        opts = {
+          send_code = true,
+          system_prompt = "You are an expert developer. Respond concisely with highly optimized code.",
+        }
+      })
+    end,
+    cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat", "CodeCompanionCmd" },
+  },
 }
