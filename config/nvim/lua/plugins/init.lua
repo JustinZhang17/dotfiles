@@ -36,6 +36,12 @@ return {
           },
         },
         display = {
+          chat = {
+            window = {
+              layout = "vertical",
+              width = 0.3,
+            },
+          },
           action_palette = {
             provider = "telescope", 
           },
