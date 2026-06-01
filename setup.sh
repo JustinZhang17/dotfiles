@@ -66,6 +66,9 @@ sudo apt install -y git-delta
 display "Install Bat"
 sudo apt install -y bat
 
+display "Install Btop"
+sudo apt install -y btop
+
 display "Configuring Shell Commands"
 if ! grep -qF "# RC config" "$SHELL_CONFIG"; then
   echo "" >> $SHELL_CONFIG
