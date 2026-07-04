@@ -29,6 +29,9 @@ sudo apt install qemu-guest-agent
 sudo systemctl enable qemu-guest-agent
 sudo systemctl start qemu-guest-agent
 
+display "Install Rust/Cargo"
+curl https://sh.rustup.rs -sSf | sh
+
 display "Install uv"
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -38,14 +41,15 @@ uv tool install --with-executables-from ansible-core ansible
 display "Install Neovim"
 sudo snap install --classic nvim
 
-display "Configuring Nvchad"
-sudo apt install -y ripgrep gcc make unzip
+display "Configuring Neovim"
+sudo apt install -y ripgrep gcc make unzip build-essential libc6-dev libclang-dev
+cargo install --locked tree-sitter-cli
 
 mkdir -p $HOME/.config
 cp -r ./config/nvim $HOME/.config/
 
 display "Setup nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -59,9 +63,6 @@ sudo apt install -y git
 
 display "Configuring git"
 cp -r ./config/git/.gitconfig $HOME
-
-display "Install Delta"
-sudo apt install -y git-delta
 
 display "Install Bat"
 sudo apt install -y bat
@@ -98,9 +99,6 @@ sudo apt install -y g++
 
 display "Install xClip (Clipboard)"
 sudo apt install -y xclip
-
-display "Install Rust/Cargo"
-curl https://sh.rustup.rs -sSf | sh
 
 display "Install Starship"
 curl -sS https://starship.rs/install.sh | sh
