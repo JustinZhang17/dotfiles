@@ -64,6 +64,9 @@ sudo apt install -y git
 display "Configuring git"
 cp -r ./config/git/.gitconfig $HOME
 
+display "Install delta (git diff viewer)"
+sudo apt install -y git-delta
+
 display "Install Bat"
 sudo apt install -y bat
 
@@ -118,6 +121,13 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 display "Install Github CLI"
 sudo snap install gh --classic
+
+display "Install Opencode"
+curl -fsSL https://opencode.ai/install | bash
+cp -r ./config/opencode $HOME/.config/
+
+display "Configure Tmux"
+cp -r ./config/tmux $HOME/.config/
 
 display "Login + Add SSH pub key to Github"
 gh auth login

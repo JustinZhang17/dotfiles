@@ -20,6 +20,10 @@ alias lcr='printf "\e[31m%-11s\e[0m | %s\n\e[35m%-11s\e[0m | %s\n\e[36m%-11s\e[0
 "•" "If a thread goes 3+ back-and-forths, stop typing, move to a sync call or in-person." \
 "•" "Praise liberally! Build a culture of positive growth."'
 
+# Editor
+nvim() { [[ "$*" == "." ]] && command nvim || command nvim "$@"; }
+export EDITOR="nvim"
+
 # Prettier
 alias cat="batcat"
 
@@ -32,7 +36,7 @@ eval "$(starship init $(basename $SHELL))"
 # Jupyter Notebooks
 alias databook="uvx --with pip --with jupyterlab-lsp --with python-lsp-server[all] jupyter notebook --no-browser --port=8080 --ip=0.0.0.0 && find . -type d -name '.ipynb_checkpoints' -exec rm -rf {} +"
 
-# Automatically launch tmux safely for interactive sessions
-if [[ $- == *i* ]] && command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach-session -t default || tmux new-session -s default
+# Auto-launch tmux on SSH login and close SSH on tmux exit
+if [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
+    exec tmux new-session -A -s main
 fi

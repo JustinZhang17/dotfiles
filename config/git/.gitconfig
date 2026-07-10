@@ -12,9 +12,6 @@
 [color]
     ui = auto    
 
-[ui]
-    color = auto
-
 [alias]
   tree = log --graph --all --decorate --oneline
   pom = push origin main
