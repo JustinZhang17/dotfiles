@@ -109,6 +109,16 @@
     "plan": {
       "permission": {
         "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "ls": "allow",
+          "ls *": "allow",
+          "pwd": "allow",
+          "file *": "allow",
+          "stat *": "allow",
+          "which *": "allow",
+          "type *": "allow",
+        }
       }
     }
   },
