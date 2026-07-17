@@ -52,9 +52,7 @@ return {
         end
 
         if client and client:supports_method('textDocument/inlayHint', event.buf) then
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle Inlay [H]ints')
+          map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
         end
       end,
     })
@@ -99,7 +97,7 @@ return {
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {})
+    vim.list_extend(ensure_installed, { 'shfmt' })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

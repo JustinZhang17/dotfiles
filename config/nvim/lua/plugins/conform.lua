@@ -11,20 +11,15 @@ return {
     },
   },
   ---@module 'conform'
-  ---@type conform.setupOpts
   opts = {
     notify_on_error = false,
-    format_on_save = function(bufnr)
-      local enabled_filetypes = {}
-      if enabled_filetypes[vim.bo[bufnr].filetype] then
-        return { timeout_ms = 500 }
-      else
-        return nil
-      end
-    end,
+    format_on_save = { timeout_ms = 500 },
     default_format_opts = {
       lsp_format = 'fallback',
     },
-    formatters_by_ft = {},
+    formatters_by_ft = {
+      lua = { 'stylua' },
+      bash = { 'shfmt' },
+    },
   },
 }
