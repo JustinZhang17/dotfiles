@@ -67,6 +67,9 @@ cp -r ./config/git/.gitconfig $HOME
 display "Install delta (git diff viewer)"
 sudo apt install -y git-delta
 
+display "Install sxiv"
+sudo apt install -y sxiv
+
 display "Install Bat"
 sudo apt install -y bat
 
