@@ -23,6 +23,7 @@ Every deck is a self-contained Next.js app-router route with its own HTML, CSS, 
 3. **Assets are local.** Every image, video, or diagram used in the deck must be imported from `./assets/...`.
    Never use the `public/` folder for deck media.
 4. **justin-slides directory.** If you are not in the `justin-slides` project directory, do NOT work on this project at all.
+5. **Motion library.** The `motion` package is already installed in `justin-slides` and may be imported in `page.tsx` for purposeful animations. Use it sparingly, keep slide transitions consistent, and respect reduced motion.
 
 ## Asset import pattern
 
@@ -154,6 +155,67 @@ loadScript('katex-js', 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min
     }
   });
 ```
+
+### Motion/animation library
+
+The `motion` package is already installed in `justin-slides`. It is an animation library, not a slide framework, so importing it in a deck's `page.tsx` does not break the "no external slide libraries" rule.
+
+#### When to use it
+
+- Use motion sparingly and purposefully.
+- Keep the slide-to-slide transition **consistent across the whole deck**. Pick one subtle transition (e.g., a soft horizontal slide + fade, or a gentle cross-fade) and reuse it.
+- Use motion to **clarify content**: staggered bullet-point reveals, building a math formula term by term, stepping through pseudocode line by line, animating a graph or diagram, or highlighting a key value.
+- Avoid rotations, flips, or other dramatic transforms unless the animation itself is genuinely the clearest way to illustrate the concept.
+- Avoid decorative-only motion that does not add meaning.
+
+#### What to avoid
+
+- A different transition on every slide.
+- Bouncy, elastic, or long (>0.5s) animations.
+- Motion that distracts from what you are explaining.
+
+#### Accessibility
+
+Use `MotionConfig` with `reducedMotion="user"` (or `useReducedMotion` from `motion/react`) so animations are disabled for users who prefer reduced motion.
+
+#### Code patterns
+
+```tsx
+import { motion, MotionConfig } from 'motion/react';
+
+<MotionConfig reducedMotion="user">
+  <motion.section
+    initial={false}
+    animate={{ x: isActive ? '0%' : `${offset * 100}%`, opacity: isActive ? 1 : 0 }}
+    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    style={{ zIndex: isActive ? 1 : 0, pointerEvents: isActive ? 'auto' : 'none' }}
+    aria-hidden={!isActive}
+  >
+    {slide.render()}
+  </motion.section>
+</MotionConfig>
+```
+
+Staggered bullet reveal:
+
+```tsx
+const list = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0 },
+};
+
+<motion.ul variants={list} initial="hidden" animate="visible">
+  <motion.li variants={item}>First point</motion.li>
+  <motion.li variants={item}>Second point</motion.li>
+</motion.ul>
+```
+
+For math, pseudocode, or diagrams, choose the simplest animation that helps the viewer follow the idea. If a more dramatic transform is the clearest way to explain the concept, keep it short and purposeful.
 
 - Keep the self-contained engine intact: keyboard navigation, progress bar, fullscreen, touch swipe.
 
