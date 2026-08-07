@@ -125,6 +125,12 @@ curl -fsSL https://tailscale.com/install.sh | sh
 display "Install Github CLI"
 sudo snap install gh --classic
 
+display "Install Docker"
+sudo apt remove docker docker-engine docker.io containerd runc
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker $USER
+newgrp docker
+
 display "Install Opencode"
 curl -fsSL https://opencode.ai/install | bash
 cp -r ./config/opencode $HOME/.config/
