@@ -91,8 +91,9 @@ npm i -g pnpm
 
 display "Install gvm"
 sudo apt install -y bison
-curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
-source $HOME/.gvm/scripts/gvm
+curl -fsSL gvm.run/install.sh | bash
+mv $HOME/bin/gvm $HOME/.local/bin/
+rm -r $HOME/bin/
 
 display "Install Typst"
 sudo snap install typst
