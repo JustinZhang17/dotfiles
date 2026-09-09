@@ -34,6 +34,9 @@ alias cat="batcat"
 # CSV viewer
 alias csv="csvlens"
 
+# Web Server
+alias serve="miniserve"
+
 # Git
 alias gitview="git tree"
 
