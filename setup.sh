@@ -145,6 +145,9 @@ gh auth login
 display "Install csvlens"
 cargo install csvlens
 
+display "Install miniserve"
+cargo install miniserve
+
 display "Set EST Timezone"
 sudo timedatectl set-timezone EST
 
