@@ -142,6 +142,9 @@ cp -r ./config/tmux $HOME/.config/
 display "Login + Add SSH pub key to Github"
 gh auth login
 
+display "Install csvlens"
+cargo install csvlens
+
 display "Set EST Timezone"
 sudo timedatectl set-timezone EST
 
