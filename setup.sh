@@ -139,8 +139,11 @@ cp -r ./config/opencode $HOME/.config/
 display "Configure Tmux"
 cp -r ./config/tmux $HOME/.config/
 
-display "Login + Add SSH pub key to Github"
-gh auth login
+display "Login + Add SSH Auth pub key to Github"
+gh auth login -h github.com -s admin:ssh_signing_key
+
+display "Add SSH Signing Key to Github"
+gh ssh-key add ~/.ssh/id_ed25519.pub --type signing
 
 display "Install csvlens"
 cargo install csvlens
