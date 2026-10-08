@@ -1,6 +1,7 @@
 [user]
   name = Justin Zhang
   email = hi@justinjzhang.com
+  signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
   editor = nvim
@@ -25,3 +26,12 @@
 
 [merge]
   conflictStyle = zdiff3
+
+[gpg]
+    format = ssh
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
