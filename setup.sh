@@ -151,6 +151,9 @@ cargo install csvlens
 display "Install miniserve"
 cargo install miniserve
 
+display "Install tldr"
+cargo install tealdeer
+
 display "Set EST Timezone"
 sudo timedatectl set-timezone EST
 
