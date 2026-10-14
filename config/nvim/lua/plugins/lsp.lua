@@ -61,6 +61,7 @@ return {
       jdtls = {},
       clangd = {},
       pyright = {},
+      ruff = {},
       vtsls = {},
       rust_analyzer = {},
       stylua = {},
