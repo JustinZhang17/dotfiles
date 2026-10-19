@@ -62,6 +62,7 @@ return {
       clangd = {},
       pyright = {},
       ruff = {},
+      gopls = {},
       vtsls = {},
       rust_analyzer = {},
       stylua = {},
