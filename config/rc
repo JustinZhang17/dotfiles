@@ -31,9 +31,6 @@ export EDITOR="nvim"
 # Prettier
 alias cat="batcat"
 
-# CSV viewer
-alias csv="csvlens"
-
 # Web Server
 alias serve="miniserve"
 

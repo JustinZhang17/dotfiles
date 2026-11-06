@@ -95,7 +95,8 @@ configure_system() {
   sudo timedatectl set-timezone EST
 
   display "Clean unused packages"
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y autoremove
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -y autoremove --purge
+  sudo apt-get -y clean
 
   display "Reload Shell Config"
   display "Restart your shell or run: source $shell_config"

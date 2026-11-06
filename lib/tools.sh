@@ -64,20 +64,6 @@ install_tree_sitter_cli() {
   chmod +x "$HOME/.local/bin/tree-sitter"
 }
 
-install_csvlens() {
-  local arch tmp
-  case "$(uname -m)" in
-    x86_64) arch=x86_64 ;;
-    aarch64|arm64) arch=aarch64 ;;
-    *) die "Unsupported architecture for csvlens: $(uname -m)" ;;
-  esac
-  tmp="$(mktemp -d)"
-  curl -fsSL "https://github.com/YS-L/csvlens/releases/latest/download/csvlens-${arch}-unknown-linux-gnu.tar.xz" -o "$tmp/csvlens.tar.xz"
-  tar -xJf "$tmp/csvlens.tar.xz" -C "$tmp"
-  install -m 755 "$tmp/csvlens" "$HOME/.local/bin/csvlens"
-  rm -rf "$tmp"
-}
-
 install_miniserve() {
   local arch tag
   case "$(uname -m)" in
@@ -151,9 +137,6 @@ install_tools() {
 
   display "Install Opencode"
   ensure_command opencode "Opencode" install_opencode
-
-  display "Install csvlens"
-  ensure_command csvlens "csvlens" install_csvlens
 
   display "Install miniserve"
   ensure_command miniserve "miniserve" install_miniserve
