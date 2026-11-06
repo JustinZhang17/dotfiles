@@ -52,6 +52,54 @@ install_opencode() {
   curl -fsSL https://opencode.ai/install | bash
 }
 
+install_tree_sitter_cli() {
+  local arch
+  case "$(uname -m)" in
+    x86_64) arch=x64 ;;
+    aarch64|arm64) arch=arm64 ;;
+    *) die "Unsupported architecture for tree-sitter-cli: $(uname -m)" ;;
+  esac
+  mkdir -p "$HOME/.local/bin"
+  curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-${arch}.gz" | gunzip > "$HOME/.local/bin/tree-sitter"
+  chmod +x "$HOME/.local/bin/tree-sitter"
+}
+
+install_csvlens() {
+  local arch tmp
+  case "$(uname -m)" in
+    x86_64) arch=x86_64 ;;
+    aarch64|arm64) arch=aarch64 ;;
+    *) die "Unsupported architecture for csvlens: $(uname -m)" ;;
+  esac
+  tmp="$(mktemp -d)"
+  curl -fsSL "https://github.com/YS-L/csvlens/releases/latest/download/csvlens-${arch}-unknown-linux-gnu.tar.xz" -o "$tmp/csvlens.tar.xz"
+  tar -xJf "$tmp/csvlens.tar.xz" -C "$tmp"
+  install -m 755 "$tmp/csvlens" "$HOME/.local/bin/csvlens"
+  rm -rf "$tmp"
+}
+
+install_miniserve() {
+  local arch tag
+  case "$(uname -m)" in
+    x86_64) arch=x86_64 ;;
+    aarch64|arm64) arch=aarch64 ;;
+    *) die "Unsupported architecture for miniserve: $(uname -m)" ;;
+  esac
+  tag="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/svenstaro/miniserve/releases/latest)"
+  tag="${tag##*/}"
+  download_binary "https://github.com/svenstaro/miniserve/releases/download/${tag}/miniserve-${tag#v}-${arch}-unknown-linux-gnu" "$HOME/.local/bin/miniserve"
+}
+
+install_tealdeer() {
+  local arch
+  case "$(uname -m)" in
+    x86_64) arch=x86_64 ;;
+    aarch64|arm64) arch=aarch64 ;;
+    *) die "Unsupported architecture for tealdeer: $(uname -m)" ;;
+  esac
+  download_binary "https://github.com/tealdeer-rs/tealdeer/releases/latest/download/tealdeer-linux-${arch}-musl" "$HOME/.local/bin/tldr"
+}
+
 ensure_nvm() {
   export NVM_DIR="$HOME/.nvm"
   if [ -s "$NVM_DIR/nvm.sh" ]; then
@@ -74,7 +122,7 @@ install_tools() {
   ensure_command ansible "Ansible" uv tool install --with-executables-from ansible-core ansible
 
   display "Install tree-sitter-cli"
-  ensure_command tree-sitter "tree-sitter-cli" cargo install --locked tree-sitter-cli
+  ensure_command tree-sitter "tree-sitter-cli" install_tree_sitter_cli
 
   display "Setup nvm"
   ensure_nvm
@@ -105,11 +153,11 @@ install_tools() {
   ensure_command opencode "Opencode" install_opencode
 
   display "Install csvlens"
-  ensure_command csvlens "csvlens" cargo install csvlens
+  ensure_command csvlens "csvlens" install_csvlens
 
   display "Install miniserve"
-  ensure_command miniserve "miniserve" cargo install miniserve
+  ensure_command miniserve "miniserve" install_miniserve
 
   display "Install tldr"
-  ensure_command tldr "tldr" cargo install tealdeer
+  ensure_command tldr "tldr" install_tealdeer
 }

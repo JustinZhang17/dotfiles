@@ -22,7 +22,6 @@ install_system_packages() {
   ensure_apt unzip
   ensure_apt build-essential
   ensure_apt libc6-dev
-  ensure_apt libclang-dev
 
   display "Install System Packages"
   ensure_apt git
@@ -36,7 +35,7 @@ install_system_packages() {
   ensure_apt xclip
 
   display "Install Snap Packages"
-  ensure_snap nvim nvim
+  ensure_snap nvim nvim classic
   ensure_snap typst typst
   ensure_snap gh gh classic
 }

@@ -70,6 +70,16 @@ ensure_snap() {
   fi
 }
 
+download_binary() {
+  local url="$1"
+  local dest="$2"
+
+  mkdir -p "$(dirname "$dest")"
+  curl -fsSL "$url" -o "$dest.tmp"
+  chmod +x "$dest.tmp"
+  mv "$dest.tmp" "$dest"
+}
+
 ensure_command() {
   local cmd="$1"
   local label="$2"
