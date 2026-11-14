@@ -8,6 +8,7 @@ source "$ROOT_DIR/lib/common.sh"
 source "$ROOT_DIR/lib/system.sh"
 source "$ROOT_DIR/lib/tools.sh"
 source "$ROOT_DIR/lib/config.sh"
+source "$ROOT_DIR/lib/sandbox.sh"
 
 UPDATE_ONLY=false
 case "${1:-}" in

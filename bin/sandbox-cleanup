@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+sandbox="${SANDBOX_DIR:-$HOME/sandbox}"
+age_days="${SANDBOX_MAX_AGE_DAYS:-60}"
+cutoff=$(( "$(date +%s)" - age_days * 86400 ))
+
+shopt -s nullglob
+for dir in "$sandbox"/*/; do
+  newest="$(find "$dir" -printf '%T@\n' | sort -rn | head -n1)"
+  [ -n "$newest" ] || continue
+  [ "${newest%%.*}" -lt "$cutoff" ] && rm -rf -- "$dir"
+done

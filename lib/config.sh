@@ -25,12 +25,15 @@ stow_configs() {
     done
 
     local file
-    for file in "$HOME/.config/starship.toml" "$HOME/.config/rc" "$HOME/.gitconfig"; do
+    for file in "$HOME/.config/starship.toml" "$HOME/.config/rc" "$HOME/.gitconfig" "$HOME/.local/bin/sandbox-cleanup"; do
       prepare_target "$file" || continue
     done
 
+    mkdir -p "$HOME/.local/bin"
+
     stow --restow -d "$stow_dir" -t "$HOME/.config" config
     stow --restow -d "$stow_dir" -t "$HOME" git
+    stow --restow -d "$stow_dir" -t "$HOME/.local/bin" bin
   else
     warn "Skipping stow (stow is not installed)"
   fi
@@ -38,6 +41,7 @@ stow_configs() {
 
 configure_system() {
   stow_configs
+  setup_sandbox
 
   display "Configuring Shell Commands"
   local shell_config

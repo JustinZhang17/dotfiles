@@ -1,0 +1,6 @@
+[Unit]
+Description=Clean up stale sandbox folders
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/sandbox-cleanup
